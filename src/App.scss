@@ -1,0 +1,20 @@
+// @Author: sarahnouh
+// @Date:   1985-10-26T10:15:00+02:00
+// @Last modified by:   sarahnouh
+// @Last modified time: 2019-08-15T07:22:59+02:00
+$pink: #d9738e;
+$blue: #1c418c;
+$peach: #f29f80;
+$salmon: #f28585;
+@import url("https://fonts.googleapis.com/css?family=Beth+Ellen|Amatic+SC:400,700&display=swap");
+@import "./pages/add-movie/add-movie.scss";
+@import "./pages/movies-list/movies-list.scss";
+
+body {
+  font-family: "Amatic SC", sans-serif;
+}
+
+.btn-primary {
+  background-color: $blue;
+  border-color: $blue;
+}
