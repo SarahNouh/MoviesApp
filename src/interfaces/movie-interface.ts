@@ -2,7 +2,7 @@
  * @Author: sarahnouh
  * @Date:   2019-08-15T17:08:32+02:00
  * @Last modified by:   sarahnouh
- * @Last modified time: 2019-08-15T17:14:34+02:00
+ * @Last modified time: 2019-08-15T18:50:25+02:00
  */
 
 /**
@@ -13,7 +13,7 @@ export interface Movie {
    *Represents the movie name
    *@type string
    */
-  name: string;
+  title: string;
 
   /**
    *Represents the movie year

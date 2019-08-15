@@ -5,6 +5,7 @@
  * @Last modified time: 2019-08-15
  */
 import { MovieListState } from "../../interfaces/movie-list-state-interface";
+import MovieService from "../../services/movie-services";
 import React from "react";
 import { RouteComponentProps } from "react-router-dom";
 
@@ -12,8 +13,14 @@ import { RouteComponentProps } from "react-router-dom";
  *This component represents the page containing the movies list
  */
 class MoviesList extends React.Component<RouteComponentProps, MovieListState> {
+  /**
+   * An instance of the movieService to use it for interaction with the api
+   *@type MovieService
+   */
+  movieService: MovieService;
   constructor(props: RouteComponentProps) {
     super(props);
+    this.movieService = new MovieService();
     this.state = { list: [] };
   }
 
@@ -29,17 +36,11 @@ class MoviesList extends React.Component<RouteComponentProps, MovieListState> {
    * A function called on component mounting
    */
   componentDidMount() {
-    //get the existing movies stored in the local storage
-    //get all the movies keys
-    let keys = Object.keys(localStorage);
-    let moviesList = [];
-    //iterate on all the keys, extract the movies data into a new array
-    for (let i = 0; i < keys.length; i++) {
-      let movieItem = JSON.parse(localStorage.getItem(keys[i]) || "");
-      moviesList.push(movieItem);
-    }
-    //update the state with the new list
-    this.setState({ list: moviesList });
+    //get the list of existing movies from the api
+    this.movieService.getAllMovies().then(response => {
+      //update the state with the new list
+      this.setState({ list: response });
+    });
   }
   render() {
     return (
@@ -50,7 +51,7 @@ class MoviesList extends React.Component<RouteComponentProps, MovieListState> {
             return (
               <div className="col-4" key={index}>
                 <div className="movie-item">
-                  <h2 className="movie-name">{movie.name}</h2>
+                  <h2 className="movie-name">{movie.title}</h2>
                   <p className="movie-year">Year: {movie.year}</p>
                   <p className="movie-budget">Budget: {movie.budget}</p>
                 </div>

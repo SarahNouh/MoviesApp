@@ -5,6 +5,8 @@
  * @Last modified time: 2019-08-15
  */
 import { AddMovieState } from "../../interfaces/add-movie-state-interface";
+import { Movie } from "../../interfaces/movie-interface";
+import MovieService from "../../services/movie-services";
 import React from "react";
 import { RouteComponentProps } from "react-router-dom";
 
@@ -12,9 +14,15 @@ import { RouteComponentProps } from "react-router-dom";
  *This component represents the page containing the form to add a new movie
  */
 class AddMovie extends React.Component<RouteComponentProps, AddMovieState> {
+  /**
+   * An instance of the movieService to use it for interaction with the api
+   *@type MovieService
+   */
+  movieService: MovieService;
   constructor(props: RouteComponentProps) {
     super(props);
-    //initializing state valuess
+    this.movieService = new MovieService();
+    //initializing state values
     this.state = {
       movieName: "",
       movieYear: "",
@@ -33,25 +41,22 @@ class AddMovie extends React.Component<RouteComponentProps, AddMovieState> {
     //prevent default submit behavior
     event.preventDefault();
     //create an object with the current movies data
-    let movieObject = {
-      name: this.state.movieName,
+    let movieObject: Movie = {
+      title: this.state.movieName,
       year: this.state.movieYear,
       budget: this.state.movieBudget
     };
     //if we have values for the name,year and budget -> store them and redirect
     if (
-      movieObject.name !== "" &&
+      movieObject.title !== "" &&
       this.validMovieYear(movieObject.year) &&
       this.validMovieBudget(movieObject.budget)
     ) {
-      //store a stringified version of the object into localStorage
-      localStorage.setItem(
-        "movie_" + this.state.movieName,
-        JSON.stringify(movieObject)
-      );
-      //redirect to the movies listing page
-      this.props.history.push("/all");
-
+      //storing the new movie object using the apis
+      this.movieService.addMovie(movieObject).then(data => {
+        //redirect to the movies listing page
+        this.props.history.push("/all");
+      });
       //clear state to clear all input values after submitting
       this.setState({
         movieName: "",
@@ -64,7 +69,7 @@ class AddMovie extends React.Component<RouteComponentProps, AddMovieState> {
       let yearError: boolean = false;
       let budgetError: boolean = false;
 
-      if (movieObject.name === "") nameError = true;
+      if (movieObject.title === "") nameError = true;
       if (!this.validMovieYear(movieObject.year)) yearError = true;
       if (!this.validMovieBudget(movieObject.budget)) {
         budgetError = true;
