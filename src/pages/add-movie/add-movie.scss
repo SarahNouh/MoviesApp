@@ -1,0 +1,36 @@
+// @Author: sarahnouh
+// @Date:   2019-08-15T04:52:01+02:00
+// @Last modified by:   sarahnouh
+// @Last modified time: 2019-08-15T16:59:24+02:00
+.add-movie {
+  margin-top: 60px;
+  font-size: 28px;
+  header {
+    margin-bottom: 3rem;
+    .title {
+      font-weight: 700;
+      font-size: 1.5em;
+      margin-bottom: 0;
+    }
+    .subtitle {
+      font-size: 0.6em;
+    }
+  }
+
+  .form-group {
+    margin-bottom: 2rem;
+    label {
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+    input {
+      color: $blue;
+      font-weight: 700;
+    }
+    .validation-error {
+      font-size: 0.6em;
+      font-weight: 700;
+      color: $salmon;
+    }
+  }
+}

@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/**
+ * @Author: sarahnouh
+ * @Date:   2019-08-14
+ * @Last modified by:   sarahnouh
+ * @Last modified time: 2019-08-15
+ */
+
+import AddMovie from "./pages/add-movie/add-movie";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import MoviesList from "./pages/movies-list/movies-list";
+import React from "react";
+import "./App.scss";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={AddMovie} />
+          <Route path="/all" component={MoviesList} />
+        </Switch>
+      </BrowserRouter>
+    </main>
   );
-}
+};
 
 export default App;

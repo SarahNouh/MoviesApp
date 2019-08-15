@@ -1,0 +1,36 @@
+// @Author: sarahnouh
+// @Date:   2019-08-15T06:16:08+02:00
+// @Last modified by:   sarahnouh
+// @Last modified time: 2019-08-15T16:59:31+02:00
+.movies-list {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  .header {
+    font-family: "Beth Ellen", cursive;
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 4%;
+  }
+  .movie-item {
+    background-image: url("../../images/movie_card_pink.png");
+    height: 170px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 10%;
+    text-align: center;
+    margin-bottom: 20px;
+    .movie-name {
+      font-family: "Beth Ellen", cursive;
+      text-transform: capitalize;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .movie-year,
+    .movie-budget {
+      margin: 0;
+      color: $blue;
+      font-weight: 700;
+    }
+  }
+}
