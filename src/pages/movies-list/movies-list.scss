@@ -1,7 +1,7 @@
 // @Author: sarahnouh
 // @Date:   2019-08-15T06:16:08+02:00
 // @Last modified by:   sarahnouh
-// @Last modified time: 2019-08-15T18:52:42+02:00
+// @Last modified time: 2019-08-15T19:42:27+02:00
 .movies-list {
   margin-top: 5%;
   margin-bottom: 5%;
@@ -19,6 +19,24 @@
     padding: 7%;
     text-align: center;
     margin-bottom: 20px;
+    position: relative;
+    .edit {
+      position: absolute;
+      left: 6%;
+      bottom: 14%;
+      fill: $blue;
+      width: 22px;
+      cursor: pointer;
+    }
+    .delete {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      bottom: 12%;
+      right: 5%;
+      fill: $salmon;
+      cursor: pointer;
+    }
     .movie-name {
       font-family: "Beth Ellen", cursive;
       line-height: 1.8em;

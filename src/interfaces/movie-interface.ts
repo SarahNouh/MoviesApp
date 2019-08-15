@@ -2,13 +2,18 @@
  * @Author: sarahnouh
  * @Date:   2019-08-15T17:08:32+02:00
  * @Last modified by:   sarahnouh
- * @Last modified time: 2019-08-15T18:50:25+02:00
+ * @Last modified time: 2019-08-15T19:55:14+02:00
  */
 
 /**
  *This interface represents the Movie Item
  */
 export interface Movie {
+  /**
+   *Represents the movie's id
+   *@type number
+   */
+  id?: number;
   /**
    *Represents the movie name
    *@type string

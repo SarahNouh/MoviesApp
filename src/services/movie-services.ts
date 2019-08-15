@@ -2,7 +2,7 @@
  * @Author: sarahnouh
  * @Date:   2019-08-15T18:28:54+02:00
  * @Last modified by:   sarahnouh
- * @Last modified time: 2019-08-15T19:21:09+02:00
+ * @Last modified time: 2019-08-16T01:01:49+02:00
  */
 
 import { Movie } from "../interfaces/movie-interface";
@@ -37,6 +37,22 @@ class MovieService {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(movie)
+    }).then(response => response.json());
+  }
+
+  /**
+   * A function called to delete an existing movie given the movie's id
+   *@param movieId number
+   */
+  async deleteMovie(movieId: number) {
+    //set the url
+    const url = `${API_URL}/movies/${movieId}`;
+    //delete the  movie
+    return fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
     }).then(response => response.json());
   }
 }
