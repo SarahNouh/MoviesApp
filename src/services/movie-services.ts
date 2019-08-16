@@ -2,7 +2,7 @@
  * @Author: sarahnouh
  * @Date:   2019-08-15T18:28:54+02:00
  * @Last modified by:   sarahnouh
- * @Last modified time: 2019-08-16T01:01:49+02:00
+ * @Last modified time: 2019-08-16T03:19:33+02:00
  */
 
 import { Movie } from "../interfaces/movie-interface";
@@ -53,6 +53,35 @@ class MovieService {
       headers: {
         "Content-Type": "application/json"
       }
+    }).then(response => response.json());
+  }
+
+  /**
+   * A function called to get existing movie using movie's id
+   *@param movieId number
+   */
+  async getMovie(movieId: number) {
+    //set the url
+    const url = `${API_URL}/movies/${movieId}`;
+    //fetch the data
+    return fetch(url).then(response => response.json());
+  }
+
+  /**
+   * A function called to edit an existing movie given the movie's id and the new movie data
+   *@param movieId number
+   *@param movie Movie
+   */
+  async editMovie(movieId: number, movie: Movie) {
+    //set the url
+    const url = `${API_URL}/movies/${movieId}`;
+    //delete the  movie
+    return fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(movie)
     }).then(response => response.json());
   }
 }

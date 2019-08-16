@@ -34,6 +34,26 @@ class AddMovie extends React.Component<RouteComponentProps, AddMovieState> {
   }
 
   /**
+   * A function called on component mounting
+   */
+  componentDidMount() {
+    //if we are editing an existing movie not adding a new one
+    //get id from params if any
+    const id = this.props.match.params.hasOwnProperty("id")
+      ? (this.props.match.params as any).id
+      : -1;
+
+    //get the movie data
+    this.movieService.getMovie(id).then(data => {
+      //update state to display data in form input fields
+      this.setState({
+        movieName: data.title,
+        movieYear: data.year,
+        movieBudget: data.budget
+      });
+    });
+  }
+  /**
    * A function called on clicking submit button
    *@param event React.MouseEvent
    */
@@ -52,11 +72,25 @@ class AddMovie extends React.Component<RouteComponentProps, AddMovieState> {
       this.validMovieYear(movieObject.year) &&
       this.validMovieBudget(movieObject.budget)
     ) {
-      //storing the new movie object using the apis
-      this.movieService.addMovie(movieObject).then(data => {
-        //redirect to the movies listing page
-        this.props.history.push("/all");
-      });
+      //get id from params if any
+      const id = this.props.match.params.hasOwnProperty("id")
+        ? (this.props.match.params as any).id
+        : -1;
+      //if we have an id => edit mode
+      if (id > -1) {
+        //storing the edited movie object using the apis
+        this.movieService.editMovie(id, movieObject).then(data => {
+          //redirect to the movies listing page
+          this.props.history.push("/all");
+        });
+      } else {
+        //storing the new movie object using the apis
+        this.movieService.addMovie(movieObject).then(data => {
+          //redirect to the movies listing page
+          this.props.history.push("/all");
+        });
+      }
+
       //clear state to clear all input values after submitting
       this.setState({
         movieName: "",

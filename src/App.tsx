@@ -18,6 +18,7 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/" component={AddMovie} />
           <Route path="/all" component={MoviesList} />
+          <Route path="/edit/:id" component={AddMovie} />
         </Switch>
       </BrowserRouter>
     </main>
