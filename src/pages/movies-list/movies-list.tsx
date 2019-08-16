@@ -4,6 +4,7 @@
  * @Last modified by:   sarahnouh
  * @Last modified time: 2019-08-15
  */
+import { Genre } from "../../interfaces/genre-interface";
 import { MovieListState } from "../../interfaces/movie-list-state-interface";
 import MovieService from "../../services/movie-services";
 import React from "react";
@@ -21,7 +22,7 @@ class MoviesList extends React.Component<RouteComponentProps, MovieListState> {
   constructor(props: RouteComponentProps) {
     super(props);
     this.movieService = new MovieService();
-    this.state = { list: [] };
+    this.state = { list: [], genreList: [] };
   }
 
   /**
@@ -36,7 +37,14 @@ class MoviesList extends React.Component<RouteComponentProps, MovieListState> {
    * A function called on component mounting
    */
   componentDidMount() {
+    //get all the movies to be listed
     this.getAllMovies();
+    //retreive a list of all genres
+    this.movieService.getAllGenres().then(genres => {
+      this.setState({
+        genreList: genres
+      });
+    });
   }
 
   /**
@@ -68,6 +76,25 @@ class MoviesList extends React.Component<RouteComponentProps, MovieListState> {
     this.props.history.push("/edit/" + movieId);
   };
 
+  /**
+   * A function called to parse genre ids to genre names
+   *@param genreIdsArray number[];
+   */
+  getGenreNames = (genreIdsArray: number[]) => {
+    //get the genre list
+    let genres = this.state.genreList;
+    let genreNames = genres.map((genre: Genre) => {
+      //if this genre id exists -> add genre name to array
+      if (genreIdsArray.indexOf(genre.id) > -1) {
+        //return the genre name
+        return genre.title + " ";
+      } else {
+        return "";
+      }
+    });
+    return genreNames;
+  };
+
   render() {
     return (
       <main className="container movies-list ">
@@ -75,7 +102,7 @@ class MoviesList extends React.Component<RouteComponentProps, MovieListState> {
         <div className="row">
           {this.state.list.map((movie, index) => {
             return (
-              <div className="col-4" key={index}>
+              <div className="col-12 col-sm-6 col-md-4" key={index}>
                 <div className="movie-item">
                   <svg
                     className="delete"
@@ -121,6 +148,9 @@ class MoviesList extends React.Component<RouteComponentProps, MovieListState> {
                   <h2 className="movie-name">{movie.title}</h2>
                   <p className="movie-year">Year: {movie.year}</p>
                   <p className="movie-budget">Budget: {movie.budget}</p>
+                  <p className="movie-genre">
+                    Genre/s: {this.getGenreNames(movie.category_ids)}
+                  </p>
                 </div>
               </div>
             );

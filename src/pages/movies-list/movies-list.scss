@@ -1,7 +1,7 @@
 // @Author: sarahnouh
 // @Date:   2019-08-15T06:16:08+02:00
 // @Last modified by:   sarahnouh
-// @Last modified time: 2019-08-15T19:42:27+02:00
+// @Last modified time: 2019-08-16T05:15:29+02:00
 .movies-list {
   margin-top: 5%;
   margin-bottom: 5%;
@@ -13,7 +13,7 @@
   }
   .movie-item {
     background-image: url("../../images/movie_card_pink.png");
-    height: 170px;
+    height: 200px;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     padding: 7%;
@@ -46,10 +46,16 @@
       text-overflow: ellipsis;
     }
     .movie-year,
-    .movie-budget {
+    .movie-budget,
+    .movie-genre {
       margin: 0;
       color: $blue;
       font-weight: 700;
+    }
+    .movie-genre {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }

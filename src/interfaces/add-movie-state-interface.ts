@@ -2,7 +2,7 @@
  * @Author: sarahnouh
  * @Date:   2019-08-15T17:02:08+02:00
  * @Last modified by:   sarahnouh
- * @Last modified time: 2019-08-15T17:35:24+02:00
+ * @Last modified time: 2019-08-16T05:16:39+02:00
  */
 
 /**
@@ -44,4 +44,16 @@ export interface AddMovieState {
    *@type booolean
    */
   budgetError: boolean;
+
+  /**
+   *Represents the genre options
+   *@type number[]
+   */
+  genreOptions: number[];
+
+  /**
+   *Represents the selected genre/s
+   *@type string[]
+   */
+  selectedGenres: string[];
 }

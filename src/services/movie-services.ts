@@ -2,7 +2,7 @@
  * @Author: sarahnouh
  * @Date:   2019-08-15T18:28:54+02:00
  * @Last modified by:   sarahnouh
- * @Last modified time: 2019-08-16T03:19:33+02:00
+ * @Last modified time: 2019-08-16T03:44:40+02:00
  */
 
 import { Movie } from "../interfaces/movie-interface";
@@ -83,6 +83,16 @@ class MovieService {
       },
       body: JSON.stringify(movie)
     }).then(response => response.json());
+  }
+
+  /**
+   * A function called to retreive the list of existing movies
+   */
+  async getAllGenres() {
+    //set the url
+    const url = `${API_URL}/categories`;
+    //fetch the data
+    return fetch(url).then(response => response.json());
   }
 }
 export default MovieService;

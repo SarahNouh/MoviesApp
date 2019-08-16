@@ -2,7 +2,7 @@
  * @Author: sarahnouh
  * @Date:   2019-08-15T17:08:32+02:00
  * @Last modified by:   sarahnouh
- * @Last modified time: 2019-08-15T19:55:14+02:00
+ * @Last modified time: 2019-08-16T04:50:24+02:00
  */
 
 /**
@@ -31,4 +31,10 @@ export interface Movie {
    *@type string
    */
   budget: string;
+
+  /**
+   *Represents the movie genre/s
+   *@type number[]
+   */
+  category_ids: number[];
 }
